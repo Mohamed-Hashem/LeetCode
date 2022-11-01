@@ -1,5 +1,6 @@
 class Solution {
     
+public:
     int n,m,ans = 0;
     using vvi = vector<vector<int>>;
     
@@ -12,6 +13,7 @@ class Solution {
         int mx = 0;
         
         for(int k = 0;k<4;k++){
+            
             int x = i + dx[k];
             int y = j + dy[k];
             
@@ -24,7 +26,7 @@ class Solution {
         
         return dp[i][j] = mx + 1;
     }
-public:
+
     int longestIncreasingPath(vector<vector<int>>& matrix) {
         n = matrix.size(),m = matrix[0].size();
         vvi dp(n,vector(m,1));
