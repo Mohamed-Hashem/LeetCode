@@ -1,25 +1,26 @@
 class Solution {
            static bool comp(vector<int> &a, vector<int> &b)
     {
-        return a[1]<b[1];
+        return a[1] < b[1];
     }
 public:
 
-    int findMinArrowShots(vector<vector<int>>& points) {
-        if(points.size()==0)
+    int findMinArrowShots(vector<vector<int>>& po) {
+        
+        if(po.size()==0)
             return 0;
         
-        sort(points.begin(), points.end(), comp);
+        sort(po.begin(), po.end(), comp);
         
         int arrows = 1;
-        int last = points[0][1];
+        int last = po[0][1];
         
-        for(int i=1; i<points.size(); i++)
+        for(int i=1; i<po.size(); i++)
         {
-            if(points[i][0]>last)
+            if(po[i][0]>last)
             {
                 arrows++;
-                last = points[i][1];
+                last = po[i][1];
             }
         }
         return arrows;
