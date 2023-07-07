@@ -7,10 +7,11 @@ class Solution {
             if (answerKey[j] == target)
                 counter++;
             
-            if (counter > k){
+            while (i < j && counter > k){
                 
                 if (answerKey[i] == target)
                     counter--;
+                
                 i++;
             }
             
