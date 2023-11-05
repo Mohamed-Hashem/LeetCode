@@ -1,13 +1,7 @@
 class Solution {
-public:
-    vector<int> searchRange(vector<int>& nums, int target) {
-        if (nums.size() == 0 )
-            return {-1,-1};
-        else if (nums.size() == 1 && nums[0] == target)
-		    return { 0,0 };
-        else {
-            
-int left = 0,right = nums.size() -1, mid;
+    int findFirst(vector<int> nums, int target){
+        
+        int left = 0,right = nums.size() -1, mid, position = -1;
             
             while (left <= right) {
                 mid = left + (right - left) / 2;
@@ -17,24 +11,37 @@ int left = 0,right = nums.size() -1, mid;
                 else if (target < nums[mid])
                     right = mid - 1;
                 else {                   
-                    break;
+                   position = mid;
+                    right = mid-1;
                 }
             }
-            
-            if (left >  right )
-                return {-1, -1};
-            else {
- 
-                left = right = mid;
-                
-                while (left >= 0  && target == nums[left] )
-                    left--;
-            
-                while (right < nums.size() && target == nums[right])
-                    right++;
+        
+        return position;
+    }
+    
+    int findLast(vector<int> nums, int target){
+        
+        int left = 0,right = nums.size() -1, mid, position = -1;
 
-                return {left + 1, right - 1};    
+        while (left <= right) {
+            mid = left + (right - left) / 2;
+
+            if (target > nums[mid])
+                left = mid + 1;
+            else if (target < nums[mid])
+                right = mid - 1;
+            else {                   
+               position = mid;
+                left = mid+1;
             }
         }
+
+        return position;
+    }
+    
+public:
+    vector<int> searchRange(vector<int>& nums, int target) {
+        
+            return {findFirst(nums,target),findLast(nums,target)};   
     }
 };
