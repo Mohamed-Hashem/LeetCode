@@ -1,26 +1,25 @@
 class Solution {
 public:
     int eliminateMaximum(vector<int>& dist, vector<int>& speed) {
-        multiset <double> mp;
         
-        for(int i =0;i <dist.size();i++){
-            mp.insert((dist[i] * 1.0) / speed[i]);
+        vector<int> time(dist.size());
+        
+        for(int i=0;i<dist.size();i++){
+            time [i] = ceil((dist[i] * 1.0) / speed[i]);
         }
         
-        int killers = 0 ;
+        sort(time.begin(),time.end());
         
-        int i =0;
+        int startTime = 0;
         
-        for(auto it: mp){
+        for(int i = 0 ; i < time.size();i++){
             
-            if (i >= it )
+            if (startTime >= time[i])
                 break;
             else 
-                killers++;
-            
-            i++;
+                startTime++;
         }
         
-        return killers;
+        return startTime;
     }
 };
