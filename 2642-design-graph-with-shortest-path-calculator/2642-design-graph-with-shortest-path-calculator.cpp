@@ -35,6 +35,7 @@ public:
 		for (auto & child : graph[currentNode]) {
 			int neighborNode = child.first;
 			int neighborCost = child.second;
+            
 			int newCost = currentCost + neighborCost;
 
 			if (newCost < distances[neighborNode]) {
