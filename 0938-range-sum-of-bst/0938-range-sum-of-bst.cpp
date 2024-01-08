@@ -10,19 +10,30 @@
  * };
  */
 class Solution {
+    
 public:
     int rangeSumBST(TreeNode* root, int low, int high) {
-        if (!root) 
-            return 0;
+     queue<TreeNode*> q;
+        q.push(root);
         
-        int s = (root->val >= low && root->val <= high) ? root->val : 0;
+        long long sum = 0;
         
-        if (root->val >= low) 
-            s += rangeSumBST(root->left,  low, high);
+        while(!q.empty()){
+            
+        TreeNode* front = q.front();
+            
+            q.pop();       
+            
+            if (front->left)
+                q.push(front->left);
+            
+            if (front->right)
+                q.push(front->right);
+            
+            if (front->val >= low && front->val <= high)
+                sum += front->val;
+        }
         
-        if (root->val <= high) 
-            s += rangeSumBST(root->right, low, high);
-        
-        return s;
+        return sum;
     }
 };
